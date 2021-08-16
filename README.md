@@ -1,15 +1,8 @@
-### Paper Project Template
-This project is a template for paper projects, based on Mojang's [brigadier](https://github.com/Mojang/brigadier) commands. You can simply click generate a repository by using this template.
+### ReportReborn
+ReportReborn is a complete rework of an old plugin by myself named "Report". 
+These are some main steps to take until the first release of the plugin:
 
-## How to use the paper api
-Since this project is based on Mojang's [brigadier](https://github.com/Mojang/brigadier) commands, we cannot use only the paper api. Instead, we have to use the compiled sources.
-To get the full paper sources, you have to complete the following step:
+- [ ] all core functions, such as a report function, a staff interface and report logging
+- [ ] a user-friendly UI and easy-to-use in-game commands
+- [ ] an api for developers with custom events
 
-- Compile the jar file directly from the [source](https://github.com/PaperMC/Paper#how-to-compiling-jar-from-source).
-
-For me, this took up to 15 - 20 minutes. However, this can variate based on your pc and download speed.
-
-After downloading/compiling the jar file, you simply have to put it into the `libs` folder.
-
-## How to use this template
-After generation an own repository using this template and compiling the paper sources, you can use this project. It's recommended to rename all placeholders like "YourPlugin" or "YourName" :)

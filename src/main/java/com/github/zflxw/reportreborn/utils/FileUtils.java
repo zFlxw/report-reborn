@@ -1,12 +1,7 @@
 package com.github.zflxw.reportreborn.utils;
 
-import com.github.zflxw.reportreborn.ReportReborn;
-import org.json.simple.JSONObject;
-
 import java.io.*;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class FileUtils {
     /**
