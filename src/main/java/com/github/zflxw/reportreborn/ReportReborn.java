@@ -1,5 +1,6 @@
 package com.github.zflxw.reportreborn;
 
+import com.github.zflxw.reportreborn.database.Database;
 import com.github.zflxw.reportreborn.utils.FileUtils;
 import com.github.zflxw.reportreborn.utils.PermissionManager;
 import com.github.zflxw.reportreborn.utils.commands.Command;
@@ -15,6 +16,7 @@ import org.reflections8.Reflections;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
+import java.util.logging.Level;
 
 public final class ReportReborn extends JavaPlugin {
     /**
@@ -23,11 +25,17 @@ public final class ReportReborn extends JavaPlugin {
      */
     public static final String NAMESPACE = "report-reborn";
 
+    /**
+     * this is just a fallback prefix, you can customize the prefix via the config file.
+     */
+    public static final String PREFIX = "§c[REPORT] ";
+
     private static ReportReborn instance;
     private PermissionManager permissionManager;
     private Translator translator;
     private FileUtils fileUtils;
     private Config config;
+    private Database database;
 
     @Override
     public void onEnable() {
@@ -44,19 +52,26 @@ public final class ReportReborn extends JavaPlugin {
         this.fileUtils = new FileUtils();
         this.config = new Config(new File(this.getDataFolder(), "config.yml"));
         this.permissionManager = new PermissionManager();
+
+        this.database = new Database();
+        this.database.connect();
     }
 
     @Override
     public void onDisable() {
+        this.database.disconnect();
+    }
 
+    public void log(Level level, String message) {
+        this.getLogger().log(level, ((this.getConfiguration().getColoredString("prefix") != null) ? this.getConfiguration().getColoredString("prefix") : PREFIX) + message);
     }
 
     public static ReportReborn getInstance() { return instance; }
-
     public PermissionManager getPermissionManager() { return this.permissionManager; }
     public Translator getTranslator() { return this.translator; }
     public FileUtils getFileUtils() { return this.fileUtils; }
     public Config getConfiguration() { return this.config; }
+    public Database getDatabase() { return this.database; }
 
     /**
      * registers all classes annotated with "LoadCommand"
