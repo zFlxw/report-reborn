@@ -1,0 +1,16 @@
+name: Idea
+description: Submit a new idea for the plugin
+title: "[IDEA]: "
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for submitting an idea to ReportReborn
+  - type: textarea
+    id: explaination
+    attributes:
+      label: Express your issue
+      placeholder: Please try to explain your idea as clearly as possible here
+    validations:
+      required: true
