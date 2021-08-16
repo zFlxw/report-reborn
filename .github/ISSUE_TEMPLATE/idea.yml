@@ -10,8 +10,7 @@ body:
   - type: textarea
     id: explaination
     attributes:
-      label: Tell me your idea
-      description: please try to express your idea as clearly and short as possible
-      placeholder: Your idea here
+      label: Express your issue
+      placeholder: Please try to explain your idea as clearly as possible here
     validations:
       required: true
