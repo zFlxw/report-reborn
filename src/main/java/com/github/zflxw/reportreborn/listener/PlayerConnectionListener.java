@@ -1,7 +1,7 @@
-package com.github.zflxw.papertemplate.listener;
+package com.github.zflxw.reportreborn.listener;
 
-import com.github.zflxw.papertemplate.YourPlugin;
-import com.github.zflxw.papertemplate.utils.listener.LoadListener;
+import com.github.zflxw.reportreborn.ReportReborn;
+import com.github.zflxw.reportreborn.utils.listener.LoadListener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -10,6 +10,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 public class PlayerConnectionListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        YourPlugin.getInstance().getPermissionManager().loadPermissions(event.getPlayer());
+        ReportReborn.getInstance().getPermissionManager().loadPermissions(event.getPlayer());
     }
 }

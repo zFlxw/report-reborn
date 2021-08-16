@@ -1,6 +1,6 @@
-name: YourPlugin
+name: ReportReborn
 version: @version@
-main: com.github.zflxw.papertemplate.YourPlugin
+main: com.github.zflxw.reportreborn.ReportReborn
 api-version: 1.17
-authors: [ YourName ]
-description: Your plugin description
+authors: [ zFlxw ]
+description: ReportReborn is an improved rework of my former plugin "report".

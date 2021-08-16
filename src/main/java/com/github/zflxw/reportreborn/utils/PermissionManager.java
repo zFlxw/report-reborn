@@ -1,7 +1,7 @@
-package com.github.zflxw.papertemplate.utils;
+package com.github.zflxw.reportreborn.utils;
 
-import com.github.zflxw.papertemplate.YourPlugin;
-import com.github.zflxw.papertemplate.utils.commands.Command;
+import com.github.zflxw.reportreborn.ReportReborn;
+import com.github.zflxw.reportreborn.utils.commands.Command;
 import com.mojang.brigadier.tree.CommandNode;
 import net.minecraft.commands.CommandListenerWrapper;
 import org.bukkit.entity.Player;
@@ -23,7 +23,7 @@ public class PermissionManager {
                 attachment.setPermission(permission.getKey(), false);
             }
         } else {
-            attachment = player.addAttachment(YourPlugin.getInstance());
+            attachment = player.addAttachment(ReportReborn.getInstance());
             permissionAttachments.put(player.getUniqueId(), attachment);
         }
 

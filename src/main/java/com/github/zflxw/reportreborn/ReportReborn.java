@@ -1,9 +1,11 @@
-package com.github.zflxw.papertemplate;
+package com.github.zflxw.reportreborn;
 
-import com.github.zflxw.papertemplate.utils.PermissionManager;
-import com.github.zflxw.papertemplate.utils.commands.Command;
-import com.github.zflxw.papertemplate.utils.commands.LoadCommand;
-import com.github.zflxw.papertemplate.utils.listener.LoadListener;
+import com.github.zflxw.reportreborn.utils.FileUtils;
+import com.github.zflxw.reportreborn.utils.PermissionManager;
+import com.github.zflxw.reportreborn.utils.commands.Command;
+import com.github.zflxw.reportreborn.utils.commands.LoadCommand;
+import com.github.zflxw.reportreborn.utils.listener.LoadListener;
+import com.github.zflxw.reportreborn.utils.localization.Translator;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -12,15 +14,17 @@ import org.reflections8.Reflections;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 
-public final class YourPlugin extends JavaPlugin {
+public final class ReportReborn extends JavaPlugin {
     /**
      * the namespace is used to identify the command, if there are multiple plugins with the same command.
      * You can call your command specifically by using /<namespace>:<command> (args...)
      */
-    public static final String NAMESPACE = "yournamespace";
+    public static final String NAMESPACE = "report-reborn";
 
-    private static YourPlugin instance;
+    private static ReportReborn instance;
     private PermissionManager permissionManager;
+    private Translator translator;
+    private FileUtils fileUtils;
 
     @Override
     public void onEnable() {
@@ -33,6 +37,8 @@ public final class YourPlugin extends JavaPlugin {
             exception.printStackTrace();
         }
 
+        this.translator = new Translator(this.getDataFolder() + "/messages");
+        this.fileUtils = new FileUtils();
         this.permissionManager = new PermissionManager();
     }
 
@@ -41,16 +47,17 @@ public final class YourPlugin extends JavaPlugin {
 
     }
 
-    public static YourPlugin getInstance() { return instance; }
+    public static ReportReborn getInstance() { return instance; }
 
     public PermissionManager getPermissionManager() { return this.permissionManager; }
+    public Translator getTranslator() { return this.translator; }
+    public FileUtils getFileUtils() { return this.fileUtils; }
 
     /**
      * registers all classes annotated with "LoadCommand"
      */
     private void registerCommands() throws InvocationTargetException, InstantiationException, IllegalAccessException {
-        // This string has to be your package path, where your command classes are located in.
-        Reflections reflections = new Reflections("com.github.zflxw.papertemplate.commands");
+        Reflections reflections = new Reflections("com.github.zflxw.reportreborn.commands");
         for (Class<?> clazz : reflections.getTypesAnnotatedWith(LoadCommand.class)) {
             if (!(clazz.getSuperclass() == Command.class)) {
                 continue;
@@ -69,7 +76,7 @@ public final class YourPlugin extends JavaPlugin {
      * registers all classes annotated with "LoadListener"
      */
     private void registerListener() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        Reflections reflections = new Reflections("com.github.zflxw.papertemplate.listener");
+        Reflections reflections = new Reflections("com.github.zflxw.reportreborn.listener");
         for (Class<?> clazz : reflections.getTypesAnnotatedWith(LoadListener.class)) {
             Object instance = clazz.getDeclaredConstructor().newInstance();
 

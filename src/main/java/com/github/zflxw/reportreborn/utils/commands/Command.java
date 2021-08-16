@@ -1,6 +1,6 @@
-package com.github.zflxw.papertemplate.utils.commands;
+package com.github.zflxw.reportreborn.utils.commands;
 
-import com.github.zflxw.papertemplate.YourPlugin;
+import com.github.zflxw.reportreborn.ReportReborn;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.tree.CommandNode;
@@ -73,7 +73,7 @@ public abstract class Command {
 
         for (String alias : aliases) {
             commandDispatcher.getRoot().addChild(createNode(alias, commandNode));
-            commandDispatcher.getRoot().addChild(createNode(YourPlugin.NAMESPACE + ":" + commandName, commandNode));
+            commandDispatcher.getRoot().addChild(createNode(ReportReborn.NAMESPACE + ":" + commandName, commandNode));
         }
     }
 

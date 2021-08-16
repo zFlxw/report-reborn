@@ -1,4 +1,4 @@
-package com.github.zflxw.papertemplate.utils.listener;
+package com.github.zflxw.reportreborn.utils.listener;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
