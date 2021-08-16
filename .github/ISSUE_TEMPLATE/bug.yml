@@ -1,0 +1,25 @@
+name: BUG
+description: Submit a new idea for the plugin
+title: "[BUG]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a bug to ReportReborn
+  - type: textarea
+    id: explaination
+    attributes:
+      label: Express your issue
+      placeholder: Please try to explain your bug as clearly as possible here
+    validations:
+      required: true
+  - type: dropdown
+    id: level
+    attributes:
+      label: Which level of bug did you find?
+      multiple: false
+      options:
+        - HIGH (This bug crashes the whole plugin/server)
+        - MEDIUM (This bug disabled/crashes multiple functions, but not the whole plugin/server)
+        - LOW (This bug does not prevent the plugin from working, such as typos)
