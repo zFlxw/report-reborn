@@ -4,6 +4,7 @@ import com.github.zflxw.reportreborn.utils.FileUtils;
 import com.github.zflxw.reportreborn.utils.PermissionManager;
 import com.github.zflxw.reportreborn.utils.commands.Command;
 import com.github.zflxw.reportreborn.utils.commands.LoadCommand;
+import com.github.zflxw.reportreborn.utils.config.Config;
 import com.github.zflxw.reportreborn.utils.listener.LoadListener;
 import com.github.zflxw.reportreborn.utils.localization.Translator;
 import org.bukkit.Bukkit;
@@ -11,6 +12,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.reflections8.Reflections;
 
+import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 
@@ -25,6 +27,7 @@ public final class ReportReborn extends JavaPlugin {
     private PermissionManager permissionManager;
     private Translator translator;
     private FileUtils fileUtils;
+    private Config config;
 
     @Override
     public void onEnable() {
@@ -39,6 +42,7 @@ public final class ReportReborn extends JavaPlugin {
 
         this.translator = new Translator(this.getDataFolder() + "/messages");
         this.fileUtils = new FileUtils();
+        this.config = new Config(new File(this.getDataFolder(), "config.yml"));
         this.permissionManager = new PermissionManager();
     }
 
@@ -52,6 +56,7 @@ public final class ReportReborn extends JavaPlugin {
     public PermissionManager getPermissionManager() { return this.permissionManager; }
     public Translator getTranslator() { return this.translator; }
     public FileUtils getFileUtils() { return this.fileUtils; }
+    public Config getConfiguration() { return this.config; }
 
     /**
      * registers all classes annotated with "LoadCommand"
