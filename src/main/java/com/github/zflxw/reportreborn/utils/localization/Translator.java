@@ -1,11 +1,12 @@
 package com.github.zflxw.reportreborn.utils.localization;
 
 import com.github.zflxw.reportreborn.ReportReborn;
-import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.craftbukkit.libs.org.apache.commons.io.FileUtils;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
@@ -25,6 +26,16 @@ public class Translator {
         this.load();
     }
 
+    public String get(Language language, String key) {
+        YamlConfiguration yamlConfiguration = languageList.get(language);
+
+        if (yamlConfiguration.contains(key)) {
+            return ChatColor.translateAlternateColorCodes('&', yamlConfiguration.getString(key));
+        }
+
+        return key;
+    }
+
     private void load() {
         if (!directory.exists() || !directory.isDirectory()) {
             directory.mkdirs();
@@ -34,7 +45,7 @@ public class Translator {
             File languageFile = new File(directory, language.getLanguageKey() + ".yml");
 
             if (!languageFile.exists()) {
-                Bukkit.getLogger().log(Level.WARNING, "No localization file for \"" + language.getLanguageName() + " (" + language.getLanguageKey() + ")\" found. Loading default file.");
+                ReportReborn.getInstance().log(Level.WARNING, "No localization file for \"" + language.getLanguageName() + " (" + language.getLanguageKey() + ")\" found. Loading default file.");
                 try {
                     Files.copy(ReportReborn.class.getClassLoader().getResourceAsStream("languages/" + language.getLanguageKey() + ".yml"), Paths.get(languageFile.toURI()));
 
