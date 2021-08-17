@@ -1,4 +1,4 @@
-package com.github.zflxw.reportreborn.utils;
+package com.github.zflxw.reportreborn.manager;
 
 import com.github.zflxw.reportreborn.ReportReborn;
 import com.github.zflxw.reportreborn.reflections.commands.Command;

@@ -1,5 +1,8 @@
 package com.github.zflxw.reportreborn.utils;
 
+import com.github.zflxw.reportreborn.ReportReborn;
+import org.bukkit.craftbukkit.libs.org.apache.commons.io.IOUtils;
+
 import java.io.*;
 import java.nio.file.Files;
 
@@ -42,6 +45,24 @@ public class FileUtils {
             exception.printStackTrace();
         }
 
+        return null;
+    }
+
+    /**
+     * read the content of a resource file from classpath.
+     * @param name the name of the resource
+     * @return the content of the file
+     */
+    public String readResource(String name) {
+        try {
+            InputStream inputStream = ReportReborn.class.getClassLoader().getResourceAsStream(name);
+            StringWriter stringWriter = new StringWriter();
+
+            IOUtils.copy(inputStream, stringWriter, "UTF-8");
+            return stringWriter.toString();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
         return null;
     }
 }

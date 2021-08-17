@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.logging.Level;
 
 public class Config {
@@ -66,6 +67,15 @@ public class Config {
      */
     public boolean getBoolean(String key) {
         return this.yamlConfiguration.getBoolean(key);
+    }
+
+    /**
+     * get a list from the config
+     * @param key the key to search for
+     * @return the list of the key
+     */
+    public List<?> getList(String key) {
+        return this.yamlConfiguration.getList(key);
     }
 
     /**

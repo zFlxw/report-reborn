@@ -1,6 +1,9 @@
 # available languages: en_us (English), de_de (Deutsch/German)
 language: en_us
 prefix: '&c&lReport &8| &7'
+# The maximum amount of reports that will be cached on startup (newest). Older ones will not appear in user overviews or similar.
+# You can request them only via the /report info <id> command
+cache-limit: 500
 # if you disable mysql, the plugin will create local sqlite (*.db) files
 mysql:
   enabled: false
@@ -10,3 +13,7 @@ mysql:
   host: host
   port: 3306
 
+reasons:
+  - HACKING
+  - INSULT
+  - SKIN

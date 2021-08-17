@@ -2,12 +2,14 @@ package com.github.zflxw.reportreborn;
 
 import com.github.zflxw.reportreborn.config.Config;
 import com.github.zflxw.reportreborn.database.Database;
+import com.github.zflxw.reportreborn.database.DatabaseManager;
 import com.github.zflxw.reportreborn.localization.Translator;
+import com.github.zflxw.reportreborn.manager.PermissionManager;
+import com.github.zflxw.reportreborn.manager.ReportManager;
 import com.github.zflxw.reportreborn.reflections.commands.Command;
 import com.github.zflxw.reportreborn.reflections.commands.LoadCommand;
 import com.github.zflxw.reportreborn.reflections.listener.LoadListener;
 import com.github.zflxw.reportreborn.utils.FileUtils;
-import com.github.zflxw.reportreborn.utils.PermissionManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.event.Listener;
@@ -42,6 +44,11 @@ public final class ReportReborn extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
+        this.fileUtils = new FileUtils();
+        this.translator = new Translator(this.getDataFolder() + "/messages");
+        this.config = new Config(new File(this.getDataFolder(), "config.yml"));
+        this.permissionManager = new PermissionManager();
+
         try {
             this.registerCommands();
             this.registerListener();
@@ -49,13 +56,11 @@ public final class ReportReborn extends JavaPlugin {
             exception.printStackTrace();
         }
 
-        this.translator = new Translator(this.getDataFolder() + "/messages");
-        this.fileUtils = new FileUtils();
-        this.config = new Config(new File(this.getDataFolder(), "config.yml"));
-        this.permissionManager = new PermissionManager();
-
         this.database = new Database();
         this.database.connect();
+
+        DatabaseManager.createTables();
+        ReportManager.cacheAllReports();
     }
 
     @Override

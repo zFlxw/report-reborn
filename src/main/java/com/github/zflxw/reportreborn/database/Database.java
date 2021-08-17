@@ -150,7 +150,7 @@ public class Database {
 
             return statement;
         } catch (SQLException exception) {
-            if (exception.getSQLState().startsWith("08")) {
+            if (exception.getSQLState() != null && exception.getSQLState().startsWith("08")) {
                 ReportReborn.getInstance().log(Level.WARNING, "Connection failed. Trying to reconnect...");
                 this.connect();
             } else {
@@ -191,7 +191,7 @@ public class Database {
         try {
             return this.statement(sql, objects).executeQuery();
         } catch (SQLException exception) {
-            if (exception.getSQLState().startsWith("08")) {
+            if (exception.getSQLState() != null && exception.getSQLState().startsWith("08")) {
                 ReportReborn.getInstance().log(Level.WARNING, "Connection failed. Trying to reconnect...");
                 this.connect();
             } else {

@@ -1,2 +1,9 @@
-bla: bla
-ya-salame: YA KALB
+messages:
+  bla: bla
+
+report_status:
+  open: 'OPEN'
+  reviewing: 'IN REVIEW'
+  accepted: 'ACCEPTED'
+  denied: 'DENIED'
+  closed: 'CLOSED'
