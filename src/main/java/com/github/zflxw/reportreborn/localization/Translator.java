@@ -1,4 +1,4 @@
-package com.github.zflxw.reportreborn.utils.localization;
+package com.github.zflxw.reportreborn.localization;
 
 import com.github.zflxw.reportreborn.ReportReborn;
 import org.bukkit.ChatColor;

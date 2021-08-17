@@ -1,4 +1,4 @@
-package com.github.zflxw.reportreborn.utils.localization;
+package com.github.zflxw.reportreborn.localization;
 
 public enum Language {
     ENGLISH("English", "en_us"),

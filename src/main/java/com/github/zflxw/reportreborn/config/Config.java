@@ -1,4 +1,4 @@
-package com.github.zflxw.reportreborn.utils.config;
+package com.github.zflxw.reportreborn.config;
 
 import com.github.zflxw.reportreborn.ReportReborn;
 import org.bukkit.Bukkit;

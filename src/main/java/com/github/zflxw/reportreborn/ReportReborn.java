@@ -1,13 +1,13 @@
 package com.github.zflxw.reportreborn;
 
+import com.github.zflxw.reportreborn.config.Config;
 import com.github.zflxw.reportreborn.database.Database;
+import com.github.zflxw.reportreborn.localization.Translator;
+import com.github.zflxw.reportreborn.reflections.commands.Command;
+import com.github.zflxw.reportreborn.reflections.commands.LoadCommand;
+import com.github.zflxw.reportreborn.reflections.listener.LoadListener;
 import com.github.zflxw.reportreborn.utils.FileUtils;
 import com.github.zflxw.reportreborn.utils.PermissionManager;
-import com.github.zflxw.reportreborn.utils.commands.Command;
-import com.github.zflxw.reportreborn.utils.commands.LoadCommand;
-import com.github.zflxw.reportreborn.utils.config.Config;
-import com.github.zflxw.reportreborn.utils.listener.LoadListener;
-import com.github.zflxw.reportreborn.utils.localization.Translator;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.event.Listener;

@@ -1,8 +1,8 @@
 package com.github.zflxw.reportreborn.commands;
 
-import com.github.zflxw.reportreborn.utils.commands.Command;
-import com.github.zflxw.reportreborn.utils.commands.CommandType;
-import com.github.zflxw.reportreborn.utils.commands.LoadCommand;
+import com.github.zflxw.reportreborn.reflections.commands.Command;
+import com.github.zflxw.reportreborn.reflections.commands.CommandType;
+import com.github.zflxw.reportreborn.reflections.commands.LoadCommand;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;

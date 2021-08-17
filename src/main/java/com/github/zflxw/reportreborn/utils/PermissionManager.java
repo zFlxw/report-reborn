@@ -1,7 +1,7 @@
 package com.github.zflxw.reportreborn.utils;
 
 import com.github.zflxw.reportreborn.ReportReborn;
-import com.github.zflxw.reportreborn.utils.commands.Command;
+import com.github.zflxw.reportreborn.reflections.commands.Command;
 import com.mojang.brigadier.tree.CommandNode;
 import net.minecraft.commands.CommandListenerWrapper;
 import org.bukkit.entity.Player;

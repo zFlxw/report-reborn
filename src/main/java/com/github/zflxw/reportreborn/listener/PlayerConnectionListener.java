@@ -1,7 +1,7 @@
 package com.github.zflxw.reportreborn.listener;
 
 import com.github.zflxw.reportreborn.ReportReborn;
-import com.github.zflxw.reportreborn.utils.listener.LoadListener;
+import com.github.zflxw.reportreborn.reflections.listener.LoadListener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;

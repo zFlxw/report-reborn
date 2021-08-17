@@ -1,4 +1,4 @@
-package com.github.zflxw.reportreborn.utils.commands;
+package com.github.zflxw.reportreborn.reflections.commands;
 
 import com.github.zflxw.reportreborn.ReportReborn;
 import com.mojang.brigadier.CommandDispatcher;

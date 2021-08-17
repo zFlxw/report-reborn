@@ -1,4 +1,4 @@
-package com.github.zflxw.reportreborn.utils.commands;
+package com.github.zflxw.reportreborn.reflections.commands;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
