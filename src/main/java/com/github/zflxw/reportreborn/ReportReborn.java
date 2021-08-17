@@ -9,6 +9,7 @@ import com.github.zflxw.reportreborn.utils.config.Config;
 import com.github.zflxw.reportreborn.utils.listener.LoadListener;
 import com.github.zflxw.reportreborn.utils.localization.Translator;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.reflections8.Reflections;
@@ -63,7 +64,7 @@ public final class ReportReborn extends JavaPlugin {
     }
 
     public void log(Level level, String message) {
-        this.getLogger().log(level, ((this.getConfiguration().getColoredString("prefix") != null) ? this.getConfiguration().getColoredString("prefix") : PREFIX) + message);
+        this.getLogger().log(level, ChatColor.translateAlternateColorCodes('&', message));
     }
 
     public static ReportReborn getInstance() { return instance; }

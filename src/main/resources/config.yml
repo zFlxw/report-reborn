@@ -1,7 +1,6 @@
 # available languages: en_us (English), de_de (Deutsch/German)
 language: en_us
-prefix: '&c&lReport &8| %7'
-
+prefix: '&c&lReport &8| &7'
 # if you disable mysql, the plugin will create local sqlite (*.db) files
 mysql:
   enabled: false
