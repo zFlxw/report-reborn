@@ -2,7 +2,8 @@
 language: en_us
 prefix: '&c&lReport &8| &7'
 # The maximum amount of reports that will be cached on startup (newest). Older ones will not appear in user overviews or similar.
-# You can request them only via the /report info <id> command
+# You can request them only via the /report info <id> command.
+# 0 = unlimited
 cache-limit: 500
 # if you disable mysql, the plugin will create local sqlite (*.db) files
 mysql:

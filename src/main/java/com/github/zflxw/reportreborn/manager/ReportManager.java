@@ -20,7 +20,7 @@ public class ReportManager {
 
     /**
      * adds a report to cache and database
-     * @param report
+     * @param report the report to add
      */
     public static void addReport(@NotNull Report report) {
         PreparedStatement statement = ReportReborn.getInstance().getDatabase().statement(
@@ -39,7 +39,7 @@ public class ReportManager {
 
     /**
      * updated a report in cache and database
-     * @param report
+     * @param report the report to update
      */
     public static void updateReport(@NotNull Report report) {
         PreparedStatement statement = ReportReborn.getInstance().getDatabase().statement(
@@ -58,7 +58,7 @@ public class ReportManager {
 
     /**
      * deletes a report with the given id
-     * @param reportId
+     * @param reportId the id of the report to remove
      */
     public static void deleteReport(String reportId) {
         reports.remove(reportId);
@@ -76,7 +76,9 @@ public class ReportManager {
     public static void cacheAllReports() {
         try {
             long start = System.currentTimeMillis();
-            ResultSet resultSet = ReportReborn.getInstance().getDatabase().query("SELECT * FROM reports");
+            int cacheLimit = ReportReborn.getInstance().getConfiguration().getInt("cache-limit");
+            ResultSet resultSet = ReportReborn.getInstance().getDatabase()
+                    .query("SELECT * FROM reports ORDER BY `TIMESTAMP` ASC " + ((cacheLimit != 0) ? "LIMIT " + cacheLimit : ""));
             ExecutorService executor = Executors.newFixedThreadPool(10);
 
             executor.execute(() -> {
@@ -109,7 +111,5 @@ public class ReportManager {
         } catch (InterruptedException exception) {
             exception.printStackTrace();
         }
-
-        System.out.println("List size: " + reports.size());
     }
 }
