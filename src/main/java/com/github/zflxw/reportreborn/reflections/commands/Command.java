@@ -2,15 +2,19 @@ package com.github.zflxw.reportreborn.reflections.commands;
 
 import com.github.zflxw.reportreborn.ReportReborn;
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.ArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 import com.mojang.brigadier.tree.CommandNode;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import net.minecraft.commands.CommandListenerWrapper;
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.craftbukkit.v1_17_R1.CraftServer;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
+import org.bukkit.permissions.PermissionDefault;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,6 +22,8 @@ import java.util.List;
 
 public abstract class Command {
     public static final List<CommandNode<CommandListenerWrapper>> commands = new ArrayList<>();
+
+    private final Permission allCommandsPermission = new Permission("reportreborn.report.*", PermissionDefault.OP);
     private final String commandName;
     private final Permission permission;
     private final CommandType commandType;
@@ -97,6 +103,36 @@ public abstract class Command {
      */
     public List<String> getAliases() { return this.aliases; }
 
+    /**
+     * check if a command sender has whether the permission of for a specific command, or the permission for all commands
+     * @param commandListenerWrapper the command sender
+     * @param commandPermission the permission of the command
+     * @return true, if the player has whether the command permission, or the permission for all commands. False otherwise
+     */
+    protected boolean hasPermission(CommandListenerWrapper commandListenerWrapper, Permission commandPermission) {
+        CommandSender commandSender = commandListenerWrapper.getBukkitSender();
+        return commandSender.hasPermission(commandPermission) || commandSender.hasPermission(allCommandsPermission);
+    }
+
+    /**
+     * check if a command sender has whether the permission of for a specific command, or the permission for all commands
+     * @param commandSender the command sender
+     * @param commandPermission the permission of the command
+     * @return true, if the player has whether the command permission, or the permission for all commands. False otherwise
+     */
+    protected boolean hasPermission(CommandSender commandSender, Permission commandPermission) {
+        return commandSender.hasPermission(commandPermission) || commandSender.hasPermission(allCommandsPermission);
+    }
+
+    protected LiteralArgumentBuilder<CommandListenerWrapper> createLiteralNode(String commandName, Permission permission) {
+        return LiteralArgumentBuilder.<CommandListenerWrapper>literal(commandName)
+                .requires(commandListenerWrapper -> this.hasPermission(commandListenerWrapper, permission));
+    }
+
+    protected <T> RequiredArgumentBuilder<CommandListenerWrapper, T> createArgumentNode(String commandName, ArgumentType<T> type, Permission permission) {
+        return RequiredArgumentBuilder.<CommandListenerWrapper, T>argument(commandName, type)
+                .requires(commandListenerWrapper -> this.hasPermission(commandListenerWrapper, permission));
+    }
     /**
      * this method creates a command node for you, so you do not have to mess up with that stuff
      * @return a command node with the given parameters

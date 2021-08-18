@@ -19,4 +19,12 @@ public enum Language {
     public String getLanguageKey() {
         return this.languageKey;
     }
+
+    public static Language getByKey(String key) {
+        if ("de_de".equals(key)) {
+            return GERMAN;
+        } else {
+            return ENGLISH;
+        }
+    }
 }

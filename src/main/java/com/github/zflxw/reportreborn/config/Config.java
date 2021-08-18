@@ -15,7 +15,7 @@ import java.util.logging.Level;
 
 public class Config {
     private final File file;
-    private final YamlConfiguration yamlConfiguration;
+    private YamlConfiguration yamlConfiguration;
 
     public Config(File file) {
         this.file = file;
@@ -92,6 +92,13 @@ public class Config {
      */
     public YamlConfiguration getYamlConfiguration() {
         return this.yamlConfiguration;
+    }
+
+    /**
+     * reload the yaml configuration
+     */
+    public void reloadConfig() {
+        yamlConfiguration = YamlConfiguration.loadConfiguration(file);
     }
 
     /**

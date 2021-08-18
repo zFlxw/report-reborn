@@ -1,9 +1,13 @@
 messages:
-  bla: bla
+  report_command:
+    invalid_command: '&cThis command could not be found. Do you need help? Try /report help'
+  help_command:
+    report: '&creport a player for a specific reason'
+    reload: '&creload the config of this plugin'
 
 report_status:
-  open: 'OPEN'
-  reviewing: 'IN REVIEW'
-  accepted: 'ACCEPTED'
-  denied: 'DENIED'
-  closed: 'CLOSED'
+  open: OPEN
+  reviewing: IN REVIEW
+  accepted: ACCEPTED
+  denied: DENIED
+  closed: CLOSED

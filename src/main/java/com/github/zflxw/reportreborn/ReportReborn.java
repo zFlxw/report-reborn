@@ -45,7 +45,7 @@ public final class ReportReborn extends JavaPlugin {
         instance = this;
 
         this.fileUtils = new FileUtils();
-        this.translator = new Translator(this.getDataFolder() + "/messages");
+        this.translator = new Translator(this.getDataFolder() + "/messages", "languages/%s.yml");
         this.config = new Config(new File(this.getDataFolder(), "config.yml"));
         this.permissionManager = new PermissionManager();
 
