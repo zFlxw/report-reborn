@@ -74,6 +74,8 @@ public abstract class Command {
 
         LiteralCommandNode<CommandListenerWrapper> commandNode = createCommand(commandBuilder);
 
+        System.out.println("Aliases (" + commandName + "): " + aliases.size());
+
         commandDispatcher.getRoot().addChild(commandNode);
         commands.add(commandNode);
 
@@ -81,6 +83,8 @@ public abstract class Command {
             commandDispatcher.getRoot().addChild(createNode(alias, commandNode));
             commandDispatcher.getRoot().addChild(createNode(ReportReborn.NAMESPACE + ":" + commandName, commandNode));
         }
+
+        System.out.println("Childs (" + commandName + "): " + commandDispatcher.getRoot().getChildren().size());
     }
 
     /**
@@ -129,8 +133,8 @@ public abstract class Command {
                 .requires(commandListenerWrapper -> this.hasPermission(commandListenerWrapper, permission));
     }
 
-    protected <T> RequiredArgumentBuilder<CommandListenerWrapper, T> createArgumentNode(String commandName, ArgumentType<T> type, Permission permission) {
-        return RequiredArgumentBuilder.<CommandListenerWrapper, T>argument(commandName, type)
+    protected <T> RequiredArgumentBuilder<CommandListenerWrapper, T> createArgumentNode(String argumentName, ArgumentType<T> type, Permission permission) {
+        return RequiredArgumentBuilder.<CommandListenerWrapper, T>argument(argumentName, type)
                 .requires(commandListenerWrapper -> this.hasPermission(commandListenerWrapper, permission));
     }
     /**

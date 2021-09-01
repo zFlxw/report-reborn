@@ -18,7 +18,7 @@ public class ReportCommand extends Command {
     private final Permission reloadPermission = new Permission("reportreborn.report.reload", PermissionDefault.OP);
 
     public ReportCommand() {
-        super("report", new Permission("reportreborn.report", PermissionDefault.OP), CommandType.BOTH);
+        super("report", new Permission("reportreborn.report", PermissionDefault.OP), CommandType.BOTH, "respo");
     }
 
     @Override
